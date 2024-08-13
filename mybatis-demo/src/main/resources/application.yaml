@@ -1,0 +1,31 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    primary:
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/test_db
+      username: root
+      password: 19970918lkdys_A
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      hikari:
+        minimum-idle: 10
+        maximum-pool-size: 20
+        idle-timeout: 500000
+        max-lifetime: 540000
+        connection-timeout: 60000
+        connection-test-query: select 1
+    secondary:
+      jdbc-url: jdbc:postgresql://127.0.0.1:5432/test_db
+      username: postgres
+      password: 19970918lkdys_A
+      driver-class-name: org.postgresql.Driver
+      hikari:
+        minimum-idle: 10
+        maximum-pool-size: 20
+        idle-timeout: 500000
+        max-lifetime: 540000
+        connection-timeout: 60000
+        connection-test-query: select version()
+
+database-id-provider: GaussDB
