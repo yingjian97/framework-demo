@@ -22,6 +22,7 @@
         <module>spring-data-mongodb-demo</module>
         <module>springmvc-demo</module>
         <module>aop-demo</module>
+        <module>datasource-demo</module>
     </modules>
 
     <dependencyManagement>
