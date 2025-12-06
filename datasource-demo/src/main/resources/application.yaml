@@ -1,0 +1,29 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    datasource1:
+      type: com.mchange.v2.c3p0.ComboPooledDataSource
+      driverClass: com.mysql.cj.jdbc.Driver
+      jdbcUrl: jdbc:mysql://127.0.0.1:3306/test_db
+      user: root
+      password: 19970918lkdys_A
+      maxPoolSize: 200
+      minPoolSize: 10
+      initialPoolSize: 10
+      acquireIncrement: 5
+      idleConnectionTestPeriod: 28000
+      maxIdleTime: 28000
+    datasource2:
+      type: com.mchange.v2.c3p0.ComboPooledDataSource
+      driverClass: org.postgresql.Driver
+      jdbcUrl: jdbc:postgresql://127.0.0.1:5432/test_db
+      user: postgres
+      password: 19970918lkdys_A
+      maxPoolSize: 200
+      minPoolSize: 10
+      initialPoolSize: 10
+      acquireIncrement: 5
+      idleConnectionTestPeriod: 28000
+      maxIdleTime: 28000
