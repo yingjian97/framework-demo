@@ -7,7 +7,7 @@ import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class PoolTest {
+public class PooledDataSource {
 
     /**
      * 数据源：ComboPooledDataSource
