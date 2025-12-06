@@ -26,6 +26,8 @@ public class PoolTest {
         connection1.close();
         Connection connection2 = dataSource.getConnection();
         Object inner2 = getInner(connection2);
+        System.out.println(connection1.getClass().getName());
+        System.out.println(connection2.getClass().getName());
         System.out.println(connection1 == connection2);
         System.out.println(inner1.getClass().getName());
         System.out.println(inner2.getClass().getName());
