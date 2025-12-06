@@ -9,6 +9,14 @@ import java.sql.SQLException;
 
 public class PoolTest {
 
+    /**
+     * 数据源：ComboPooledDataSource
+     * 数据库连接线程池：BasicResourcePool
+     * 每个数据源都是独立的数据库连接线程池
+     * ComboPooledDataSource.getConnection() -> C3P0PooledDataSource.getConnection() -> BasicResourcePool.getResource() ->
+     * NewPooledConnection (create or reuse) -> NewPooledConnection.getConnection() -> NewProxyConnection (return)
+     */
+
     public static void main(String[] args) throws PropertyVetoException, SQLException {
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
         dataSource.setDriverClass("com.mysql.cj.jdbc.Driver");
@@ -17,21 +25,22 @@ public class PoolTest {
         dataSource.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/test_db");
         dataSource.setInitialPoolSize(1);
         dataSource.setMaxPoolSize(1);
-//        Connection connection = dataSource.getConnection();
-//        System.out.println(connection.getClass().getName());
-//        Object inner = getInner(connection);
-//        System.out.println(inner.getClass().getName());
-        Connection connection1 = dataSource.getConnection();
-        Object inner1 = getInner(connection1);
-        connection1.close();
-        Connection connection2 = dataSource.getConnection();
-        Object inner2 = getInner(connection2);
-        System.out.println(connection1.getClass().getName());
-        System.out.println(connection2.getClass().getName());
-        System.out.println(connection1 == connection2);
-        System.out.println(inner1.getClass().getName());
-        System.out.println(inner2.getClass().getName());
-        System.out.println(inner1 == inner2);
+        Connection connection = dataSource.getConnection();
+        System.out.println(connection.getClass().getName()); // com.mchange.v2.c3p0.impl.NewProxyConnection
+        Object inner = getInner(connection);
+        System.out.println(inner.getClass().getName()); // com.mysql.cj.jdbc.ConnectionImpl
+
+//        Connection connection1 = dataSource.getConnection();
+//        Object inner1 = getInner(connection1);
+//        connection1.close();
+//        Connection connection2 = dataSource.getConnection();
+//        Object inner2 = getInner(connection2);
+//        System.out.println(connection1.getClass().getName());
+//        System.out.println(connection2.getClass().getName());
+//        System.out.println(connection1 == connection2);
+//        System.out.println(inner1.getClass().getName());
+//        System.out.println(inner2.getClass().getName());
+//        System.out.println(inner1 == inner2);
 
 
     }
