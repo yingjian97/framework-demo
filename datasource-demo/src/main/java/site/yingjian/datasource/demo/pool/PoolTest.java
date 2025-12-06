@@ -1,4 +1,4 @@
-package site.yingjian.aop.demo;
+package site.yingjian.datasource.demo.pool;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
