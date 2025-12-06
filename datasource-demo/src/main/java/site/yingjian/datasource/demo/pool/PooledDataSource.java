@@ -5,7 +5,9 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 import java.beans.PropertyVetoException;
 import java.lang.reflect.Field;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class PooledDataSource {
 
@@ -29,6 +31,13 @@ public class PooledDataSource {
         System.out.println(connection.getClass().getName()); // com.mchange.v2.c3p0.impl.NewProxyConnection
         Object inner = getInner(connection);
         System.out.println(inner.getClass().getName()); // com.mysql.cj.jdbc.ConnectionImpl
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM user");
+        while (resultSet.next()) {
+            long id = resultSet.getLong("id");
+            String name = resultSet.getString("name");
+            System.out.println(id + ": " + name);
+        }
 
 //        Connection connection1 = dataSource.getConnection();
 //        Object inner1 = getInner(connection1);
